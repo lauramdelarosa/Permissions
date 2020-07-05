@@ -93,8 +93,6 @@ class MainActivity : AppCompatActivity() {
         return builder.show()
     }
 
-
-
 }
 
 fun Snackbar.withColor(colorInt: Int): Snackbar{
