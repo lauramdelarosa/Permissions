@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Permission</string>
+    <string name="ok">try again</string>
+    <string name="cancel">Deny</string>
+</resources>
