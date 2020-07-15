@@ -3,12 +3,12 @@ package com.delarosa.permission
 import android.Manifest
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
 import androidx.activity.invoke
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.delarosa.permission.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
@@ -16,26 +16,6 @@ import com.google.android.material.snackbar.Snackbar
 class MainActivity : AppCompatActivity() {
 
     lateinit var view: ActivityMainBinding
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        view = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(view.root)
-
-
-        view.cameraButton.setOnClickListener {
-            askPermission(Manifest.permission.CAMERA)
-        }
-
-        view.locationButton.setOnClickListener {
-            askPermission(Manifest.permission.ACCESS_FINE_LOCATION)
-        }
-
-        view.galleryButton.setOnClickListener {
-            askMultiplePermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE))
-        }
-
-    }
 
     private val askMultiplePermissions =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { map ->
@@ -62,6 +42,26 @@ class MainActivity : AppCompatActivity() {
                     .show()
             }
         }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        view = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(view.root)
+
+
+        view.cameraButton.setOnClickListener {
+            askPermission(Manifest.permission.CAMERA)
+        }
+
+        view.locationButton.setOnClickListener {
+            askPermission(Manifest.permission.ACCESS_FINE_LOCATION)
+        }
+
+        view.galleryButton.setOnClickListener {
+            askMultiplePermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE))
+        }
+
+    }
 
     private fun askAgain(permission: String) {
         if (ActivityCompat.shouldShowRequestPermissionRationale(this, permission)) {
@@ -95,7 +95,7 @@ class MainActivity : AppCompatActivity() {
 
 }
 
-fun Snackbar.withColor(colorInt: Int): Snackbar{
+fun Snackbar.withColor(colorInt: Int): Snackbar {
     this.view.setBackgroundColor(colorInt)
     return this
 }
